@@ -32,21 +32,20 @@ export default class NewBlogPost extends Component {
   }
   fileUpload = async (id) => {
     try {
-      const response = await fetch(
-        `http://localhost:3001/blogPosts/${id}/uploadCover`,
-        {
-          method: 'POST',
-          body: this.state.formData,
-        }
-      );
+      const apiUrl = process.env.REACT_APP_API_URL;
+      const response = await fetch(`${apiUrl}/blogPosts/${id}/uploadCover`, {
+        method: 'POST',
+        body: this.state.formData,
+      });
       if (!response.ok) throw 'something went wrong';
     } catch (error) {}
   };
 
   addNewPost = async (e) => {
     e.preventDefault();
+    const apiUrl = process.env.REACT_APP_API_URL;
     try {
-      let response = await fetch('http://localhost:3001/blogPosts/', {
+      let response = await fetch(`${apiUrl}/blogPosts/`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',

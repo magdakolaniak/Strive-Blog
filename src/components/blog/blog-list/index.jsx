@@ -8,8 +8,9 @@ export default class BlogList extends Component {
   };
 
   componentDidMount = async () => {
+    const apiUrl = process.env.REACT_APP_API_URL;
     try {
-      let response = await fetch('http://localhost:3001/blogPosts/');
+      let response = await fetch(`${apiUrl}/blogPosts`);
       if (response.ok) {
         let data = await response.json();
         this.setState({
